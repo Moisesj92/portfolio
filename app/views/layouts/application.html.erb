@@ -14,6 +14,46 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+    <div class="container mx-auto" >
+      <div class="flex flex-row py-6">
+        <div class="basis-1/4 grid justify-items-center" >
+          <a href="/" >
+            <%= image_tag "logo.png", class:"h-10" %>
+          </a>
+        </div>
+        <nav class="basis-2/4 flex justify-around" >
+          <%= link_to "Intro", root_path, class: "px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" %>
+          <%= link_to "Blog", root_path, class: "px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" %>
+          <%= link_to "Contacto", root_path, class: "px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" %>
+        </nav>
+        <div class="basis-1/4 grid justify-items-center items-center">
+          <%= link_to "Black / white", root_path %>
+        </div>
+      </div>
+      <%= yield %>
+    </div>
+
+    <div class="container mx-auto">
+      <div class="flex flex-row items-center justify-between border-t border-grey py-10">
+        <div class="mr-auto flex flex-row items-center">
+          <a href="/" class="mr-6">
+            <%= image_tag "logo.png", class:"h-10" %>
+          </a>
+          <p class="">
+            ©2022 John Doe.
+          </p>
+        </div>
+        <div class="mr-0 flex flex-row items-center">
+          <a href="/" class="mr-6">
+            <%= image_tag "logo.png", class:"h-10" %>
+          </a>
+          <a href="/" class="mr-6">
+            <%= image_tag "logo.png", class:"h-10" %>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
