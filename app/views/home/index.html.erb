@@ -14,15 +14,17 @@
   </p>
 </div>
 
-<div class="border-b border-grey py-6">
+<div class="py-6">
   <div class="flex items-center pb-6" >
     <%= image_tag "logo.png", class:"h-5" %>
     <h3 class="ml-3 text-2xl font-semibold"> My Notes </h3>
   </div>
-  --- List of blog Posts ---
+  <div id="posts" class="min-w-full">
+    <%= render @posts %>
+  </div>
 </div>
 
-<div class="border-b border-grey py-6">
+<div class="py-6">
   <div class="flex items-center pb-6" >
     <%= image_tag "logo.png", class:"h-5" %>
     <h3 class="ml-3 text-2xl font-semibold"> My Projects </h3>
