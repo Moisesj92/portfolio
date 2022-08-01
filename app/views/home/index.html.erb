@@ -20,7 +20,7 @@
     <h3 class="ml-3 text-2xl font-semibold"> My Notes </h3>
   </div>
   <div id="posts" class="min-w-full">
-    <%= render @posts %>
+    <%= render @posts.note %>
   </div>
 </div>
 
@@ -29,5 +29,8 @@
     <%= image_tag "logo.png", class:"h-5" %>
     <h3 class="ml-3 text-2xl font-semibold"> My Projects </h3>
   </div>
-  --- List of projects ---
+
+  <div id="projects" class="min-w-full">
+      <%= render @posts.project %>
+  </div>
 </div>

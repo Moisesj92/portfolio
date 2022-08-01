@@ -1,0 +1,15 @@
+<div id="<%= dom_id comment %>">
+
+  <%# author and date %>
+  <div class="flex justify-between">
+    <p class="text-sm text-gray-300"> <%= comment.user.first_name %> <%= comment.user.last_name %> </p>
+    <p class="text-sm text-gray-300"> <%= comment.created_at.strftime("%F") %> </p>
+  </div>
+
+  <div>
+    <%= comment.content %>
+  </div>
+
+  <hr class="my-5">
+
+</div>
