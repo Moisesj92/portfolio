@@ -1,0 +1,44 @@
+<%= form_with model: [:admin, @post], class: "mt-6 space-y-6" do |form| %>
+  <% if @post.errors.any? %>
+    <div class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+      <p class="font-semibold">Please fix the errors below:</p>
+      <ul class="mt-2 list-disc pl-5">
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div>
+      <%= form.label :title, class: "text-xs font-semibold uppercase tracking-[0.2em] text-slate-500" %>
+      <%= form.text_field :title, class: "mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-emerald-400 focus:outline-none" %>
+    </div>
+    <div>
+      <%= form.label :category_id, "Category", class: "text-xs font-semibold uppercase tracking-[0.2em] text-slate-500" %>
+      <%= form.collection_select :category_id, Category.order(:name), :id, :name, { prompt: "Select category" }, class: "mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-emerald-400 focus:outline-none" %>
+    </div>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div>
+      <%= form.label :status, class: "text-xs font-semibold uppercase tracking-[0.2em] text-slate-500" %>
+      <%= form.select :status, Post.statuses.keys.map { |status| [status.titleize, status] }, {}, class: "mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-emerald-400 focus:outline-none" %>
+    </div>
+    <div>
+      <%= form.label :published_at, "Published at", class: "text-xs font-semibold uppercase tracking-[0.2em] text-slate-500" %>
+      <%= form.datetime_local_field :published_at, class: "mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-emerald-400 focus:outline-none" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :body, class: "text-xs font-semibold uppercase tracking-[0.2em] text-slate-500" %>
+    <%= form.text_area :body, rows: 10, class: "mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-emerald-400 focus:outline-none" %>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <%= form.submit class: "rounded-full bg-emerald-600 px-6 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700" %>
+    <%= link_to "Cancel", admin_posts_path, class: "text-sm font-medium text-slate-600 hover:text-slate-700" %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+published_post:
+  title: "First published"
+  body: "Published content."
+  status: published
+  published_at: <%= 2.days.ago %>
+  category: product
+
+draft_post:
+  title: "Hidden draft"
+  body: "Draft content."
+  status: draft
+  published_at:
+  category: writing

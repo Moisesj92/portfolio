@@ -1,0 +1,62 @@
+module Admin
+  class PostsController < BaseController
+    before_action :set_post, only: %i[show edit update destroy]
+
+    def index
+      @posts = Post.includes(:category).order(created_at: :desc)
+    end
+
+    def show
+    end
+
+    def new
+      @post = Post.new(status: :draft)
+    end
+
+    def create
+      @post = Post.new(post_params)
+      normalize_published_at(@post)
+
+      if @post.save
+        redirect_to admin_post_path(@post), notice: "Post created."
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+    def edit
+    end
+
+    def update
+      @post.assign_attributes(post_params)
+      normalize_published_at(@post)
+
+      if @post.save
+        redirect_to admin_post_path(@post), notice: "Post updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @post.destroy
+      redirect_to admin_posts_path, notice: "Post deleted."
+    end
+
+    private
+
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    def post_params
+      params.require(:post).permit(:title, :body, :status, :published_at, :category_id)
+    end
+
+    def normalize_published_at(post)
+      return unless post.published?
+
+      post.published_at ||= Time.current
+    end
+  end
+end

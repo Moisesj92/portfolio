@@ -1,0 +1,23 @@
+<section class="rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-[0.2em] text-emerald-700">Preview</p>
+      <h1 class="mt-2 text-3xl font-semibold text-slate-900"><%= @post.title %></h1>
+      <p class="mt-2 text-sm text-slate-500">
+        <%= @post.category.name %> · <%= @post.status.titleize %>
+      </p>
+    </div>
+    <div class="flex items-center gap-2 text-sm">
+      <%= link_to "Edit", edit_admin_post_path(@post), class: "rounded-full border border-slate-200 px-3 py-1.5 text-slate-700 hover:border-slate-300" %>
+      <%= link_to "Back", admin_posts_path, class: "rounded-full border border-slate-200 px-3 py-1.5 text-slate-700 hover:border-slate-300" %>
+    </div>
+  </div>
+
+  <div class="mt-6 text-xs text-slate-500">
+    Publicado: <%= @post.published_at ? @post.published_at.strftime("%d %b %Y") : "-" %>
+  </div>
+
+  <div class="mt-6 space-y-4 font-serif text-base leading-relaxed text-slate-700">
+    <%= simple_format(@post.body) %>
+  </div>
+</section>
