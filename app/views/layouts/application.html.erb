@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html <%= 'class="dark"' if session[:theme] == "dark" %>>
   <head>
     <title><%= content_for(:title) || "Portfolio" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -26,26 +26,22 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="min-h-screen bg-amber-50 text-slate-900 antialiased">
-    <div class="pointer-events-none fixed inset-0 -z-10">
-      <div class="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-amber-200/70 blur-3xl"></div>
-      <div class="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-emerald-200/60 blur-3xl"></div>
-    </div>
-
+  <body class="min-h-screen text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-50 antialiased">
     <div class="mx-auto flex min-h-screen max-w-6xl flex-col px-4 sm:px-6 py-6 sm:py-10">
-      <header class="flex flex-wrap items-center justify-between gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-amber-100 bg-white/70 px-4 sm:px-6 py-3 sm:py-4 shadow-sm backdrop-blur">
+      <header class="flex flex-wrap items-center justify-between gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-amber-100 bg-white/70 px-4 sm:px-6 py-3 sm:py-4 shadow-sm backdrop-blur transition-colors dark:bg-slate-900/70 dark:border-slate-800">
         <div class="flex-1 min-w-0">
-          <p class="text-xs uppercase tracking-[0.2em] text-amber-700">Portfolio Blog</p>
-          <p class="text-xl sm:text-2xl font-semibold text-slate-900 truncate">Notas y proyectos</p>
+          <p class="text-xs uppercase tracking-[0.2em] text-amber-700 dark:text-amber-500">Portfolio Blog</p>
+          <p class="text-xl sm:text-2xl font-semibold text-slate-900 truncate dark:text-slate-50">Notas y proyectos</p>
         </div>
         <nav class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium">
-          <%= link_to "Blog", root_path, class: "rounded-full border border-transparent px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-amber-200 hover:bg-amber-100/60 whitespace-nowrap" %>
+          <%= link_to "Blog", root_path, class: "rounded-full border border-transparent px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-amber-200 hover:bg-amber-100/60 dark:text-slate-300 dark:hover:border-amber-600 dark:hover:bg-amber-900/30 whitespace-nowrap" %>
           <% if admin_user? %>
-            <%= link_to "Admin", admin_root_path, class: "rounded-full border border-transparent px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-emerald-200 hover:bg-emerald-100/60 whitespace-nowrap" %>
-            <%= button_to "Logout", logout_path, method: :delete, class: "rounded-full border border-slate-200 px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 whitespace-nowrap" %>
+            <%= link_to "Admin", admin_root_path, class: "rounded-full border border-transparent px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-emerald-200 hover:bg-emerald-100/60 dark:text-slate-300 dark:hover:border-emerald-600 dark:hover:bg-emerald-900/30 whitespace-nowrap" %>
+            <%= button_to "Logout", logout_path, method: :delete, class: "rounded-full border border-slate-200 px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-800 whitespace-nowrap" %>
           <% else %>
-            <%= link_to "Login", login_path, class: "rounded-full border border-slate-200 px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 whitespace-nowrap" %>
+            <%= link_to "Login", login_path, class: "rounded-full border border-slate-200 px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-800 whitespace-nowrap" %>
           <% end %>
+          <%= button_to session[:theme] == "dark" ? "☀️" : "🌙", theme_toggle_path, method: :post, class: "ml-2 rounded-full border border-slate-200 px-2.5 sm:px-3 py-1.5 text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-800 whitespace-nowrap", title: "Toggle dark mode"%>
         </nav>
       </header>
 

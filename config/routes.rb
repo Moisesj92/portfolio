@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy"
 
+  post "theme/toggle", to: "theme#toggle", as: :theme_toggle
+
   resources :posts, only: %i[index show]
 
   namespace :admin do

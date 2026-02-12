@@ -1,6 +1,6 @@
-<article class="rounded-2xl md:rounded-3xl border border-slate-200 bg-white/80 p-6 md:p-8 lg:p-10 shadow-sm">
-  <div class="flex flex-wrap items-center gap-2 md:gap-3 text-xs text-slate-500">
-    <span class="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-700 font-medium">
+<article class="rounded-2xl md:rounded-3xl border border-slate-200 bg-white/80 p-6 md:p-8 lg:p-10 shadow-sm transition-colors dark:border-slate-700 dark:bg-slate-800/70">
+  <div class="flex flex-wrap items-center gap-2 md:gap-3 text-xs text-slate-500 dark:text-slate-300">
+    <span class="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-700 font-medium dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-700">
       <%= @post.category.name %>
     </span>
     <span class="hidden sm:inline">·</span>
@@ -8,14 +8,14 @@
       <%= @post.published_at.strftime("%d de %B de %Y") %>
     </time>
   </div>
-  <h1 class="mt-4 md:mt-6 text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-900 leading-tight"><%= @post.title %></h1>
-  <div class="mt-6 md:mt-8 space-y-4 font-serif text-base md:text-lg leading-relaxed text-slate-700 max-w-none prose prose-slate">
+  <h1 class="mt-4 md:mt-6 text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-900 leading-tight dark:text-slate-50"><%= @post.title %></h1>
+  <div class="mt-6 md:mt-8 space-y-4 font-serif text-base md:text-lg leading-relaxed text-slate-700 max-w-none prose prose-slate dark:prose-invert">
     <%= simple_format(@post.body) %>
   </div>
 </article>
 
 <div class="mt-6 md:mt-8 flex flex-wrap items-center gap-4">
-  <%= link_to root_path, class: "inline-flex items-center gap-2 text-sm font-medium text-amber-700 hover:text-amber-800 transition" do %>
+  <%= link_to root_path, class: "inline-flex items-center gap-2 text-sm font-medium text-amber-700 hover:text-amber-800 transition dark:text-amber-500 dark:hover:text-amber-400" do %>
     <span>←</span>
     <span>Volver al blog</span>
   <% end %>

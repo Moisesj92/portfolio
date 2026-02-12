@@ -6,6 +6,7 @@ module.exports = {
     "./app/assets/stylesheets/**/*.css",
     "./app/assets/tailwind/**/*.css"
   ],
+  darkMode: ["class"],
   theme: {
     extend: {
       fontFamily: {

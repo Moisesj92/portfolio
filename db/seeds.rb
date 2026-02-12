@@ -9,6 +9,7 @@ puts "Creando usuario admin..."
 admin = User.find_or_create_by!(email: "admin@portfolio.com") do |user|
   user.password = "password123"
   user.password_confirmation = "password123"
+  user.admin = true
 end
 puts "✓ Usuario admin creado: #{admin.email}"
 

@@ -1,0 +1,47 @@
+services:
+  blog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: portfolio-blog-dev
+    environment:
+      RAILS_ENV: development
+      RAILS_LOG_TO_STDOUT: "1"
+      PGHOST: db
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      POSTGRES_DB: portfolio_development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/rails
+      - bundle_cache:/usr/local/bundle
+      - rails_storage:/rails/storage
+      - /rails/tmp
+      - /rails/log
+    depends_on:
+      db:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: portfolio_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/18/docker
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  rails_storage:
+  bundle_cache:
